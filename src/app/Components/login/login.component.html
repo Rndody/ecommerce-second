@@ -1,0 +1,57 @@
+<section>
+
+    <div class="container">
+        <h1 class="h3 mt-3"> Login Now</h1>
+        <form (ngSubmit)="login()" [formGroup]="loginForm" class="rounded shadow bg-light-main mx-auto p-3">
+            <!-- (ngSubmit) better than (submit) as it stops the reload of the form-->
+            <!-- it's better to use (ngSubmit) on the form instead on the (click) event on the button as
+                 the user may use the keyboard not only clicking on the button -->
+
+
+
+            <div class="p-2 m-1   ">
+                <label for="email">Email:</label>
+                <input placeholder="Email" class="form-control " formControlName="email" type="email" id="email">
+
+                <!-- <div class=" " *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched"> -->
+                <div class=" " *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].touched">
+                    <p class="text-danger fst-italic small fw-bold"
+                        *ngIf="loginForm.controls['email'].getError('required') "> Email is required </p>
+                    <p class="text-danger fst-italic small fw-bold"
+                        *ngIf="loginForm.controls['email'].getError('email')"> please write a valid email Address
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="p-2 m-1   ">
+                <label for="password">Password:</label>
+                <input placeholder="Password" class="form-control " formControlName="password" type="password"
+                    id="password">
+
+                <div class=" "
+                    *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].touched  ">
+                    <p class="text-danger fst-italic small fw-bold"
+                        *ngIf="loginForm.controls['password'].getError('required')"> the password is required </p>
+                    <p class="text-danger fst-italic small fw-bold"
+                        *ngIf="loginForm.controls['password'].getError('pattern')"> the password must be at least
+                        6characters </p>
+                </div>
+
+            </div>
+
+
+            <button *ngIf="!isLoading" [disabled]="loginForm.invalid" class="main-btn d-block my-4 ms-auto  "
+                type="submit">
+                login</button>
+
+            <button *ngIf="isLoading" class="main-btn d-block my-4 ms-auto px-5 py-1" type=" button"> <i
+                    class="fas sa-spin fa-spinner"></i></button>
+
+            <p class="text-danger fst-italic small fw-bold" *ngIf="errorMessage"> {{errorMessage}}</p>
+        </form>
+
+    </div>
+
+
+</section>

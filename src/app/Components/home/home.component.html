@@ -1,0 +1,21 @@
+<section>
+
+
+  <app-home-slider/>
+  
+  <app-category-slider/>
+
+
+    <input [(ngModel)]="searchTerm"  type="text" class="w-75 m-auto form-control p-3 my-5" placeholder="Search ...">
+
+
+    <div class="row d-flex justify-content-evenly">
+        <div class="col-md-3 product p-1 m-1" *ngFor="let item of products| search:searchTerm  ">
+            <app-product [product]="item"></app-product>
+            <!-- <img [src]="product.imageCover" class="w-100" [alt]="product.title">
+            <h4> {{product.title}}</h4> -->
+        </div>
+
+
+    </div>
+</section>

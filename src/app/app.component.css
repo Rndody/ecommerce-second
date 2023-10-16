@@ -1,0 +1,12 @@
+/*# sourceMappingURL=app.component.css.map */
+
+:host {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-section {
+    padding-top: 5rem;
+    ;
+}
