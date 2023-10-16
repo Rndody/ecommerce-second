@@ -9,6 +9,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./check-out.component.scss'],
 })
 export class CheckOutComponent {
+
+
+  cartId: string = '';
+
   constructor(
     private _PaymentService: PaymentService,
     private _ActivatedRoute: ActivatedRoute
@@ -21,7 +25,7 @@ export class CheckOutComponent {
     });
   }
 
-  cartId: string = '';
+  
 
   shippingAddress: FormGroup = new FormGroup({
     details: new FormControl(''),

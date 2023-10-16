@@ -17,4 +17,20 @@ export class ProductsService {
   getProductDetails(productId:string):Observable<any>{
     return this._HttpClient.get(this.baseUrl+'products/'+productId)
   }
+
+  getBrands():Observable<any> {
+    return this._HttpClient.get(`https://route-ecommerce.onrender.com/api/v1/brands`)
+   }
+
+
+   getProducts():Observable<any> {
+    return this._HttpClient.get('https://route-ecommerce.onrender.com/api/v1/products')
+   }
+   getCatDetailes(id:string):Observable<any> {
+    return this._HttpClient.get(`https://route-ecommerce.onrender.com/api/v1/subcategories/${id}`)
+   }
+
+   getProductCategories():Observable<any> {
+    return this._HttpClient.get(`https://route-ecommerce.onrender.com/api/v1/categories`)
+   }
 }
