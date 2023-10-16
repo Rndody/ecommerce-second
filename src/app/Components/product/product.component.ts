@@ -2,6 +2,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { CartService } from './../../Services/cart.service';
 import { Component, Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { WishlistService } from 'src/app/Services/wishlist.service';
 
 @Component({
   selector: 'app-product',
@@ -14,7 +15,8 @@ export class ProductComponent {
   constructor(
     private _CartService: CartService,
     private _AuthenticationService: AuthenticationService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private _WishlistService:WishlistService
   ) {}
 
   addProductID(productId: string) {
@@ -31,6 +33,26 @@ export class ProductComponent {
           this._AuthenticationService.logOut();
         }
       },
+
+
     });
+  }
+
+
+  addWishList(productId: string){
+    this._WishlistService.addtoWishlist(productId).subscribe({
+ next: (response) => {
+        // this._CartService.numOfCartItems.next(response.numOfCartItems)
+
+        this.toastr.success('Product added to wishlist', 'Success');
+      },
+      error: (err) => {
+        console.log(err.error.message);
+
+        if (err.error.message == 'Invalid Token. please login again') {
+          this._AuthenticationService.logOut();
+        }
+      },
+    })
   }
 }
