@@ -24,13 +24,11 @@ export class CartComponent implements OnInit {
     this.isLoading = true;
     this._CartService.getUserCartProducts().subscribe({
       next: (response) => {
-        console.log(response);
+        console.log(response.data);
         this.cartProducts = response.data.products;
         this.totalCartPrice = response.data.totalCartPrice;
-
         this.isLoading = false;
-        
-        
+       
         this.cartId = response.data._id;
       },
       error: (err) => {
@@ -75,8 +73,6 @@ export class CartComponent implements OnInit {
       },
     });
   }
-
-
 
   updateProductCount(productId: string, count: number, index: number) {
     this.cartProducts[index].count = count;

@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { WishlistService } from 'src/app/Services/wishlist.service';
 
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -19,10 +20,14 @@ export class ProductComponent {
     private _WishlistService:WishlistService
   ) {}
 
-  addProductID(productId: string) {
+  wishListProducts: any[] = [];
+
+
+
+  addProductIDCart(productId: string) {
     this._CartService.addProductID(productId).subscribe({
       next: (response) => {
-        // this._CartService.numOfCartItems.next(response.numOfCartItems)
+        this._CartService.numOfCartItems.next(response.numOfCartItems)
 
         this.toastr.success('Product added to cart', 'Success');
       },
@@ -37,14 +42,15 @@ export class ProductComponent {
 
     });
   }
+isInWishlist:boolean=false;
 
-
-  addWishList(productId: string){
-    this._WishlistService.addtoWishlist(productId).subscribe({
- next: (response) => {
-        // this._CartService.numOfCartItems.next(response.numOfCartItems)
+  addProductIDCartWishList(productId: string) {
+    this._WishlistService.addProductID(productId).subscribe({
+      next: (response) => {
+        this._WishlistService.numOfWishListItems.next(response.numOfWishListItems)
 
         this.toastr.success('Product added to wishlist', 'Success');
+        this.isInWishlist=true;
       },
       error: (err) => {
         console.log(err.error.message);
@@ -53,6 +59,24 @@ export class ProductComponent {
           this._AuthenticationService.logOut();
         }
       },
-    })
+
+
+    });
   }
+
+  removeProductFromCart(productId: string) {
+    this._WishlistService.removeWishListProduct(productId).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.wishListProducts = response.data.products;
+        this.isInWishlist=false;
+        this._WishlistService.numOfWishListItems.next(response.numOfCartItems);
+
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
 }

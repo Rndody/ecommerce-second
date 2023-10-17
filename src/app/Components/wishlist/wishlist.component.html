@@ -1,4 +1,4 @@
-
+<!-- 
 <div *ngIf="wishlistempty" class="emptywishlist p-4 my-4">
     <div class="inner-image text-center">
         <img src="assets/emptywishlist.jpg" alt="">
@@ -26,6 +26,106 @@
             <button (click)="addPro(product._id)" class="btn bg-main text-white w-100"><span class="mx-1">+</span>Add</button>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- <i class="fa-solid fa-hand-holding-heart" style="color: #800000;"></i> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section>
+
+
+    <div class="row my-3 shadow p-2 rounded-2" *ngFor="let item of wishListProducts ;let i = index">
+        <div class="col-md-1">
+            <img class="w-100" [src]="item.imageCover" alt="">
+          
+        </div>
+        <div class="col-md-11">
+            <div class="d-flex justify-content-between">
+                <h3> {{item.title}} </h3>
+                
+            </div>
+            <div class="d-flex justify-content-between">
+                <h5> {{item.category.name}} </h5>
+            
+            </div>
+            <p class="d-flex justify-content-between">
+                <span> {{item.price | currency:'EGP '}} </span>
+                <span> <i class="fas rating-color  fa-star"></i> {{item.ratingsAverage}} </span>
+            </p>
+        </div>
+    </div>
+
+
+
+    <!-- <h1 *ngIf="(errorMessage|| wishListProducts.length==0) && !isLoading" class="text-danger text-center"> you did't add
+        products yet</h1> -->
+
+   
+
+    
+</section>
+
+
+
+
+
+<!-- 
+
+
+<button (click)='clearUserCart()' class="btn btn-outline-danger ms-auto d-block mt-5 mb-3">Clear cart</button>
+
+<div *ngFor="let product of cartProducts; let i = index" class="row my-3 shadow p-2 rounded-2">
+    <div class="col-md-1">
+        <img class="w-100" [src]="product.product.imageCover" alt="">
+    </div>
+    <div class="col-md-11">
+        <div class="d-flex justify-content-between">
+            <h3>{{product.product.title}}</h3>
+            <button (click)="removeProductFromCart(product.product._id)" class="btn text-danger"><i
+                    class="fas fa-trash"></i> Remove</button>
+        </div>
+        <div class="d-flex justify-content-between">
+            <h5>{{product.product.category.name}}</h5>
+            <div>
+                <button (click)="updateProductCount(product.product._id, product.count - 1, i)"
+                    class="btn bg-main text-white mx-2">-</button>
+                <span>{{product.count}}</span>
+                <button (click)="updateProductCount(product.product._id, product.count + 1, i)"
+                    class="btn bg-main text-white mx-2">+</button>
+            </div>
+        </div>
+        <p class="d-flex justify-content-between">
+            <span>{{product.price | currency: 'EGP'}}</span>
+            <span><i class="fas fa-star rating-color"></i>{{product.product.ratingsAverage}}</span>
+        </p>
+    </div>
+</div>
+
+<h2 *ngIf="(errorMessage || cartProducts.length ==0) && !isLoading" class="alert alert-danger text-center ">No products
+    in your cart
+</h2>
+
+<span class="d-block ms-auto h5  my-3">Total cart price : <span class="fw-bolder">{{totalCartPrice | currency:
+        'EGP'}}</span></span>
+
+<button *ngIf="cartProducts.length != 0" [routerLink]="'/checkout/'+cartId"
+    class="btn bg-main text-white m-auto d-block   my-3">Checkout</button> -->
