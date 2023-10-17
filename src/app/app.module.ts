@@ -35,6 +35,7 @@ import { SubcategoriesDetailsComponent } from './Components/subcategories-detail
 import { SubcategotyOnCategoryComponent } from './Components/subcategoty-on-category/subcategoty-on-category.component';
 import { SearchPipe } from './Pipes/search.pipe';
 import { ToastrModule } from 'ngx-toastr';
+import { ForgetPasswordComponent } from './Components/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ToastrModule } from 'ngx-toastr';
     SubcategoriesDetailsComponent,
     SubcategotyOnCategoryComponent,
     SearchPipe,
+    ForgetPasswordComponent,
     
   ],
   imports: [
