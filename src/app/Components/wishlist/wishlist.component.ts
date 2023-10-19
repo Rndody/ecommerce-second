@@ -30,7 +30,8 @@ export class WishlistComponent {
     this._WishlistService.getUserWishListProducts().subscribe({
       next: (response) => {
         console.log(response.data);
-        this.wishListProducts = response.data.products;
+
+        this.wishListProducts = response.data;
         this.isLoading = false;
         this.wishListId = response.data._id;
       },
