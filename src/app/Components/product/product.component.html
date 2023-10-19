@@ -18,7 +18,7 @@
 
 
     <div  class="d-flex justify-content-end px-3">
-         <i  *ngIf="!isInWishlist"  (click)="addProductIDCartWishList(product._id)" class="fa-regular fa-heart fa-2x pointer  "
+         <i  *ngIf="!isInWishlist"  (click)="addProductIDWishList(product._id)" class="fa-regular fa-heart fa-2x pointer  "
             style="color: #800000;"></i> 
             <i  *ngIf="isInWishlist"  (click)="removeProductFromCart(product._id)" class="fa-solid fa-heart-circle-check fa-beat fa-2x pointer  "
             style="color: #800000;"></i> 

@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.scss'],
 })
-export class WishlistComponent {
+export class WishlistComponent  implements OnInit {
   constructor(
     private _WishlistService: WishlistService,
     private _CartService: CartService,
@@ -25,7 +25,7 @@ export class WishlistComponent {
     console.log(this.wishListProducts)
   }
 
-  getUserWishListProducts() {
+ getUserWishListProducts() {
     this.isLoading = true;
     this._WishlistService.getUserWishListProducts().subscribe({
       next: (response) => {

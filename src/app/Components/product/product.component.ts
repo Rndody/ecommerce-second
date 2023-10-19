@@ -1,6 +1,6 @@
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { CartService } from './../../Services/cart.service';
-import { Component, Input } from '@angular/core';
+import { Component, Input,OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { WishlistService } from 'src/app/Services/wishlist.service';
 
@@ -9,9 +9,11 @@ import { WishlistService } from 'src/app/Services/wishlist.service';
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
-})
-export class ProductComponent {
+}) 
+export class ProductComponent  implements OnInit {
   @Input() product: any;
+
+
 
   constructor(
     private _CartService: CartService,
@@ -20,6 +22,12 @@ export class ProductComponent {
     private _WishlistService:WishlistService
   ) {}
 
+
+  ngOnInit(): void {
+  // getUserWishListProducts();
+    console.log(this.wishListProducts)
+    this.addProductIDWishList(this.productId)
+  }
   wishListProducts: any[] = [];
 
 
@@ -42,11 +50,14 @@ export class ProductComponent {
 
     });
   }
+  productId:string=""
 isInWishlist:boolean=false;
 
-  addProductIDCartWishList(productId: string) {
+  addProductIDWishList(productId: string) {
     this._WishlistService.addProductID(productId).subscribe({
       next: (response) => {
+
+        productId
         this._WishlistService.numOfWishListItems.next(response.numOfWishListItems)
 
         this.toastr.success('Product added to wishlist', 'Success');
